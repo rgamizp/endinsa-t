@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Endinsa't</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // --- REFERÈNCIES A LES SECCIONS ---
+  const videoSection           = document.getElementById('video-section');
+  const quiSomSection          = document.getElementById('qui-som');
+  const somASection            = document.getElementById('som-a');
+  const centresEducatiusSection = document.getElementById('centres-educatius');
+  const hospitalsSection       = document.getElementById('hospitals');
+  const centresGentGranSection  = document.getElementById('centres-gent-gran');
+  const centresPenitenciarisSection = document.getElementById('centres-penitenciaris');
+  const projectesSection = document.getElementById('projectes');
+  const projecteHospitalMar = document.getElementById('projecte-hospital-del-mar');
+  const projecteAulaImmersiva = document.getElementById('projecte-aula-immersiva');
+  const projecteMemoriaRecords = document.getElementById('projecte-memoria-records');
+  const legalSection = document.getElementById('legal');
+  const langCa = document.getElementById('lang-ca');
+  const langEs = document.getElementById('lang-es');
+  const linkProjectes = document.getElementById('link-projectes');
+
+ 
+
+
+
+  // LOGO (per tornar a l'inici)
+  const logoHome = document.getElementById('logo-home') || document.querySelector('.logo img');
+
+  // ENLLAÇOS DEL MENÚ
+  const linkQuiSom          = document.querySelector('a[href="#qui-som"]');
+  const linkSomA            = document.querySelector('a[href="#som-a"]');
+  const linkCentresEducatius = document.querySelector('a[href="#centres-educatius"]');
+  const linkHospitals        = document.querySelector('a[href="#hospitals"]');
+  const linkCentresGentGran  = document.querySelector('a[href="#centres-gent-gran"]');
+  const linkCentresPenitenciaris = document.querySelector('a[href="#centres-penitenciaris"]');
+  const linkLegal = document.querySelector('a[href="#legal"]');
+   
+  // === ENLLAÇ AUTOMÀTIC CAT/CAST MANTENINT SECCIÓ ===
+
+
+function switchLang(to) {
+  const hash = window.location.hash || '';
+  const target = (to === 'es') ? 'index-es.html' : 'index.html';
+  window.location.href = target + hash;
+}
+
+if (langEs) {
+  langEs.addEventListener('click', function(e) {
+    // Si ja estàs a ES, no facis res
+    if (window.location.pathname.includes('index-es.html')) return;
+    e.preventDefault();
+    switchLang('es');
+  });
+}
+
+if (langCa) {
+  langCa.addEventListener('click', function(e) {
+    // Si ja estàs a CAT, no facis res
+    if (!window.location.pathname.includes('index-es.html')) return;
+    e.preventDefault();
+    switchLang('ca');
+  });
+}
+
+
+
+  // --- FUNCIÓ PER AMAGAR TOTES LES SECCIONS ---
+  function amagarTotes() {
+    if (videoSection)            videoSection.style.display = 'none';
+    if (quiSomSection)           quiSomSection.style.display = 'none';
+    if (somASection)             somASection.style.display = 'none';
+    if (centresEducatiusSection) centresEducatiusSection.style.display = 'none';
+    if (hospitalsSection)        hospitalsSection.style.display = 'none';
+    if (centresGentGranSection)  centresGentGranSection.style.display = 'none';
+    if (centresPenitenciarisSection) centresPenitenciarisSection.style.display = 'none';
+    if (projectesSection) projectesSection.style.display = 'none';
+    if (projecteHospitalMar) projecteHospitalMar.style.display = 'none';
+    if (projecteAulaImmersiva) projecteAulaImmersiva.style.display = 'none';
+    if (projecteMemoriaRecords) projecteMemoriaRecords.style.display = 'none';
+    if (legalSection) legalSection.style.display = 'none';
+
+
+}
+
+  // --- FUNCIÓ GENÈRICA PER MOSTRAR UNA SECCIÓ ---
+ function mostrarSeccio(id) {
+  amagarTotes();
+
+  if (id === 'video' && videoSection) {
+    videoSection.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'qui-som' && quiSomSection) {
+    quiSomSection.style.display = 'flex';
+    quiSomSection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'som-a' && somASection) {
+    somASection.style.display = 'block';
+    somASection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'centres-educatius' && centresEducatiusSection) {
+    centresEducatiusSection.style.display = 'block';
+    centresEducatiusSection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'hospitals' && hospitalsSection) {
+    hospitalsSection.style.display = 'block';
+    hospitalsSection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'centres-gent-gran' && centresGentGranSection) {
+    centresGentGranSection.style.display = 'block';
+    centresGentGranSection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'centres-penitenciaris' && centresPenitenciarisSection) {
+    centresPenitenciarisSection.style.display = 'block';
+    centresPenitenciarisSection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'projectes' && projectesSection) {
+    projectesSection.style.display = 'block';
+    projectesSection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (id === 'legal' && legalSection) {
+    legalSection.style.display = 'block';
+    legalSection.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+}
+
+
+  // --- CLICK EN QUI SOM ---
+  if (linkQuiSom) {
+    linkQuiSom.addEventListener('click', function (e) {
+      e.preventDefault();
+      mostrarSeccio('qui-som');
+    });
+  }
+
+  // --- CLICK EN SOM A ---
+  if (linkSomA) {
+    linkSomA.addEventListener('click', function (e) {
+      e.preventDefault();
+      mostrarSeccio('som-a');
+    });
+  }
+
+  // --- CLICK EN CENTRES EDUCATIUS ---
+  if (linkCentresEducatius) {
+    linkCentresEducatius.addEventListener('click', function (e) {
+      e.preventDefault();
+      mostrarSeccio('centres-educatius');
+    });
+  }
+  if (linkHospitals) {
+  linkHospitals.addEventListener('click', function (e) {
+    e.preventDefault();
+    mostrarSeccio('hospitals');
+    });
+  }
+  if (linkCentresGentGran) {
+    linkCentresGentGran.addEventListener('click', function (e) {
+      e.preventDefault();
+      mostrarSeccio('centres-gent-gran');
+    });
+  }
+  if (linkCentresPenitenciaris) {
+  linkCentresPenitenciaris.addEventListener('click', function (e) {
+    e.preventDefault();
+    mostrarSeccio('centres-penitenciaris');
+    });
+  }
+  if (linkProjectes) {
+  linkProjectes.addEventListener('click', function (e) {
+    e.preventDefault();
+    mostrarSeccio('projectes');
+    });
+  }
+  if (linkLegal) {
+  linkLegal.addEventListener('click', function (e) {
+    e.preventDefault();
+    mostrarSeccio('legal');
+  });
+}
+
+
+
+
+  // --- CLICK AL LOGO = TORNAR AL VÍDEO ---
+  if (logoHome) {
+    logoHome.addEventListener('click', function (e) {
+      e.preventDefault();
+      mostrarSeccio('video');
+    });
+  }
+    // --- CLICK SOBRE PROJECTES (CARDS) ---
+  document.querySelectorAll('.projecte-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const projecteId = card.dataset.projecte;
+
+      amagarTotes();
+
+      if (projecteId === 'hospital-del-mar' && projecteHospitalMar) {
+        projecteHospitalMar.style.display = 'block';
+        projecteHospitalMar.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (projecteId === 'aula-immersiva' && projecteAulaImmersiva) {
+      projecteAulaImmersiva.style.display = 'block';
+      projecteAulaImmersiva.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (projecteId === 'memoria-records' && projecteMemoriaRecords) {
+      projecteMemoriaRecords.style.display = 'block';
+      projecteMemoriaRecords.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    });
+  });
+
+
+  // Al principi: assegurem que només es vegi el vídeo
+  mostrarSeccio('video');
+ });
+</script>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img id="logo-home" src="logobueno.png" alt="Endinsa't">
+  </div>
+
+  <nav>
+    <ul class="main-menu">
+      <li><a href="#qui-som">QUIÉNES SOMOS</a></li>
+
+      <li class="has-submenu">
+        <a href="#">SERVICIOS</a>
+        <ul class="submenu">
+          <li><a href="#centres-educatius">CENTROS EDUCATIVOS</a></li>
+          <li><a href="#hospitals">HOSPITALES</a></li>
+          <li><a href="#centres-gent-gran">CENTROS DE PERSONAS MAYORES</a></li>
+          <li><a href="#centres-penitenciaris">CENTROS PENITENCIARIOS</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#projectes" id="link-projectes">PROYECTOS</a></li>
+      <li><a href="#som-a">DÓNDE ESTAMOS</a></li>
+    </ul>
+
+    <!--<div class="lang">
+      <span>CAT</span>
+      <span class="active">CAST</span>
+    </div>-->
+    <div class="lang">
+    <a href="index.html" id="lang-ca">CAT</a>
+     <a href="index-es.html" class="active" id="lang-es">CAST</a>
+    </div>
+
+  </nav>
+</header>
+<!--
+<section class="hero-video" id="video-section">
+  <video autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+    <source src="video.webm" type="video/webm">
+    Tu navegador no soporta vídeo HTML5.
+  </video>
+</section>-->
+<section class="hero-video" id="video-section">
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/0McrUyPsGh4?autoplay=1&mute=1&loop=1&playlist=0McrUyPsGh4&controls=0&showinfo=0&rel=0"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section id="qui-som" class="section-qui">
+  <div class="qui-text">
+    <h2>QUIÉNES SOMOS</h2>
+
+    <p><strong>Endinsa’t</strong> nace de una idea muy clara: las <span class="resaltat">experiencias inmersivas</span> no tienen por qué llevarte lejos, pueden llegar hasta ti.</p>
+
+    <p>
+      Todo empezó al ver personas <span class="resaltat">aisladas</span> — en <span class="resaltat">residencias</span>, 
+      <span class="resaltat">hospitales</span>, <span class="resaltat">orfanatos</span> o 
+      <span class="resaltat">centros de menores</span> — y pensar que valía la pena ofrecerles 
+      una <span class="resaltat">realidad diferente</span> capaz de hacerles sentir felices.
+    </p>
+
+    <p>
+      Con el tiempo, hemos querido ir más allá: <span class="resaltat">llevamos las experiencias inmersivas a cualquier lugar</span>, 
+      con finalidades <span class="resaltat">educativas</span>, <span class="resaltat">lúdicas</span> o 
+      <span class="resaltat">emocionales</span>, siempre <span class="resaltat">adaptadas a cada persona y situación</span>.
+    </p>
+  </div>
+
+  <div class="qui-img">
+    <img src="qui-som.png" alt="Experiencia inmersiva">
+  </div>
+</section>
+
+<!-- DÓNDE ESTAMOS -->
+<section id="som-a" class="section-som">
+
+  <div class="som-container">
+
+    <!-- MAPA + TÍTOL A L'ESQUERRA -->
+    <div class="som-map">
+      <h2>Calle Segre, nº 125, 08030 Barcelona</h2>
+
+    <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.951875839266!2d2.1871422153812253!3d41.43301847926078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4bbf8f420ca0f%3A0x6cf312c283b9a7da!2sCarrer%20Segre%2C%20125%2C%2008030%20Barcelona!5e0!3m2!1sca!2es!4v1700000000000"
+  width="100%"
+  height="450"
+  style="border:0; border-radius: 6px; overflow:hidden;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  scrolling="no">
+</iframe>
+
+    </div>
+
+    <!-- TRANSPORT A LA DRETA -->
+    <div class="som-info">
+      <div class="transport-block">
+        <img src="metro.png" class="transport-icon">
+        <div>
+          <h3>Metro</h3>
+          <p><strong>Onze de Setembre (L10 i L9)</strong><br>3 minutos caminando</p>
+          <p><strong>Fabra i Puig (L1)</strong><br>10 minutos caminando</p>
+        </div>
+      </div>
+
+      <div class="transport-block">
+        <img src="rodalies.png" class="transport-icon">
+        <div>
+          <h3>Cercanias</h3>
+          <p><strong>Fabra i Puig</strong><br>10 minutos caminando</p>
+          <p><strong>Sant Andreu Arenal</strong><br>10 minutos caminando</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+ <section id="centres-educatius" class="section-servei" style="display:none;">
+  <div class="servei-inner">
+    <div class="servei-img">
+      <img src="centres-educatius.png" alt="Experiencias inmersivas en centros educativos">
+    </div>
+
+    <div class="servei-text">
+<h2>Centros educativos</h2>
+<p>Llevamos las <strong>experiencias inmersivas</strong> a las aulas como apoyo educativo y lúdico.</p>
+
+<h2>Hospitales</h2>
+<p>Utilizamos la tecnología inmersiva para reducir la ansiedad y mejorar el bienestar emocional.</p>
+
+<h2>Centros de personas mayores</h2>
+<p>Experiencias diseñadas para estimular la memoria y generar bienestar emocional.</p>
+
+<h2>Centros penitenciarios</h2>
+<p>La realidad virtual como herramienta de transformación personal y social.</p>
+</div>
+</div>
+</section>
+
+<section id="hospitals" class="section-servei">
+  <div class="servei-inner">
+
+    <!-- IMATGE ESQUERRA -->
+    <div class="servei-img">
+      <!-- Canvia el nom si el fitxer es diu diferent -->
+      <img src="Hospitals.png" alt="Experiències immersives en hospitals">
+    </div>
+
+    <!-- TEXT DRETA -->
+    <div class="servei-text">
+      <h2>Hospitales</h2>
+
+  <p>
+    En Endinsa’t no nos olvidamos de las personas que están viviendo procesos difíciles en los hospitales.
+    Nuestro objetivo es poner la tecnología inmersiva al servicio de su bienestar y
+    <strong>transportarlas, aunque sea por un momento, a entornos más amables y confortables</strong>
+    que los del hospital.
+  </p>
+
+  <p><strong>Por eso ofrecemos:</strong></p>
+
+  <ul>
+    <li><strong>Reducción del dolor y la ansiedad</strong> a través de entornos inmersivos diseñados para generar calma y relajación.</li>
+
+    <li><strong>Rehabilitación física y cognitiva gamificada</strong>, que convierte los ejercicios terapéuticos en experiencias motivadoras.</li>
+
+    <li><strong>Programas de bienestar emocional y mindfulness</strong>, pensados para acompañar a los pacientes en momentos de estrés o recuperación.</li>
+  </ul>
+</div>
+</div>
+</section>
+<section id="centres-gent-gran" class="section-servei">
+  <div class="servei-inner">
+
+    <!-- IMATGE ESQUERRA -->
+    <div class="servei-img">
+      <!-- Quan tinguis la imatge, posa el nom correcte al src -->
+      <img src="centres-gent-gran.png" alt="Experiències immersives en centres de gent gran">
+    </div>
+
+    <!-- TEXT DRETA -->
+    <div class="servei-text">
+     <h2>Centros de personas mayores</h2>
+
+  <p>
+    En Endinsa’t queremos acompañar también a las personas mayores en su día a día,
+    especialmente a aquellas que viven en residencias o centros de día.
+    Las experiencias inmersivas pueden <strong>romper la rutina</strong>, despertar recuerdos y
+    generar momentos de conexión emocional con su entorno y con las familias.
+  </p>
+
+  <p><strong>Por eso ofrecemos:</strong></p>
+
+  <ul>
+    <li><strong>Vivencias inmersivas con carga emocional positiva</strong>, como paseos virtuales por la naturaleza o visitas a lugares significativos.</li>
+
+    <li><strong>Talleres de memoria y estimulación cognitiva</strong> en entornos lúdicos y seguros.</li>
+
+    <li><strong>Experiencias compartidas</strong> para favorecer el vínculo entre residentes, familias y profesionales.</li>
+
+    <li><strong>Programas adaptados al ritmo y a las necesidades de cada persona</strong>, con especial cuidado en el confort y la seguridad.</li>
+  </ul>
+</div>
+</div>
+</section>
+<section id="centres-penitenciaris" class="section-servei">
+  <div class="servei-inner">
+
+    <!-- IMATGE ESQUERRA -->
+    <div class="servei-img">
+      <!-- Canvia el nom del fitxer si es diu diferent -->
+      <img src="centres-penitenciaris.png" alt="Experiències immersives en centres penitenciaris">
+    </div>
+
+    <!-- TEXT DRETA -->
+    <div class="servei-text">
+    <h2>Centros penitenciarios</h2>
+
+  <p>
+    En Endinsa’t creemos en el poder de las experiencias inmersivas como herramienta de
+    <strong>transformación personal y social</strong>. En los centros penitenciarios, la realidad virtual puede
+    ofrecer espacios seguros para el aprendizaje, la reflexión y el desarrollo de habilidades,
+    contribuyendo a los procesos de reinserción y bienestar emocional.
+  </p>
+
+  <p><strong>Por eso ofrecemos:</strong></p>
+
+  <ul>
+    <li>
+      <strong>Rehabilitación emocional y social</strong>, con programas orientados a la gestión de conflictos,
+      la comunicación y el desarrollo de habilidades sociales.
+    </li>
+
+    <li>
+      <strong>Formación laboral mediante simuladores de realidad virtual</strong>, que permiten aprender
+      oficios y competencias profesionales en entornos prácticos y seguros.
+    </li>
+    <li>
+      <strong>Programas de reducción del estrés y regulación emocional</strong>, pensados para mejorar el bienestar
+      psicológico y la convivencia.
+    </li>
+
+    <li>
+      <strong>Apoyo educativo con contenidos inmersivos</strong>, que facilitan el aprendizaje y el acceso al
+      conocimiento de una forma más motivadora.
+    </li>
+  </ul>
+</div>
+</div>
+</section>
+<section id="projectes" class="section-projectes" style="display:none;">
+  <div class="projectes-grid">
+
+    <!-- PROYECTO 1 -->
+    <div class="projecte-card" data-projecte="hospital-del-mar">
+      <img src="projecte-hospital-mar.png" alt="Hospital del Mar">
+      <div class="projecte-overlay">
+        <span>Hospital del Mar</span>
+      </div>
+    </div>
+
+    <!-- PROYECTO 2 -->
+    <div class="projecte-card" data-projecte="aula-immersiva">
+      <img src="projecte-aula.png" alt="Aula immersiva">
+      <div class="projecte-overlay">
+        <span>Monlau Aula inmersiva</span>
+      </div>
+    </div>
+
+    <!-- PROYECTO 3 -->
+    <div class="projecte-card" data-projecte="memoria-records">
+      <img src="projecte-gent-gran.png" alt="Memòria i records">
+      <div class="projecte-overlay"><span>Memoria y recuerdos</span></div>
+    </div>
+
+    <!-- Puedes añadir más -->
+  </div>
+</section>
+
+<section id="projecte-hospital-del-mar" class="section-projecte">
+  <div class="projecte-inner">
+
+    <!-- TEXTO -->
+    <div class="projecte-text">
+      <h2>Hospital del Mar</h2>
+
+      <p>
+        Proyecto de experiencias inmersivas diseñado para acompañar a pacientes
+        del Hospital del Mar, con el objetivo de reducir la ansiedad y mejorar el bienestar emocional.
+      </p>
+
+      <p>
+        Mediante la realidad virtual, se crean entornos calmados y seguros que
+        permiten desconectar temporalmente del entorno hospitalario.
+      </p>
+    </div>
+
+    <!-- IMÁGENES -->
+    <div class="projecte-galeria">
+      <img src="hospital-mar-1.png" alt="Experiència immersiva hospitalària">
+      <img src="hospital-mar-2.png" alt="Realitat virtual en hospital">
+      <img src="hospital-mar-3.png" alt="Benestar emocional amb VR">
+    </div>
+
+
+  </div>
+</section>
+
+<section id="projecte-aula-immersiva" class="section-projecte">
+  <div class="projecte-inner">
+
+    <div class="projecte-text">
+      <h2>Aula inmersiva</h2>
+
+      <p>
+        Proyecto pensado para llevar experiencias de realidad virtual al aula de Monlau Motul Technical School
+        con actividades educativas y lúdicas adaptadas a diferentes edades.
+      </p>
+
+      <p>
+        El objetivo es aprender desde la experiencia, reforzar contenidos
+        curriculares y fomentar la motivación del alumnado.
+      </p>
+    </div>
+
+    <div class="projecte-galeria">
+      <img src="aula-1.png" alt="Aula immersiva 1">
+      <img src="aula-2.png" alt="Aula immersiva 2">
+      <img src="aula-3.png" alt="Aula immersiva 3">
+    </div>
+
+  </div>
+</section>
+
+<section id="projecte-memoria-records" class="section-projecte">
+  <div class="projecte-inner">
+
+    <div class="projecte-text">
+      <h2>Memoria y recuerdos</h2>
+
+      <p>
+        Proyecto orientado a personas mayores para estimular la memoria y la conexión emocional
+        mediante experiencias inmersivas seguras y adaptadas.
+      </p>
+
+      <p>
+        A través de paseos virtuales, entornos familiares y actividades suaves,
+        se promueve el bienestar, la conversación y el vínculo con familiares y profesionales.
+      </p>
+    </div>
+
+    <div class="projecte-galeria">
+      <img src="memoria-1.png" alt="Memòria i records 1">
+      <img src="memoria-2.jpeg" alt="Memòria i records 2">
+      <img src="memoria-3.jpg" alt="Memòria i records 3">
+    </div>
+
+  </div>
+</section>
+
+</section>
+<section class="social-links">
+  <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+    <img src="icons/facebook.png" alt="Facebook">
+  </a>
+
+  <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+    <img src="icons/instagram.png" alt="Instagram">
+  </a>
+
+
+  <a href="https://www.youtube.com" target="_blank" aria-label="YouTube">
+    <img src="icons/youtube.png" alt="YouTube">
+  </a>
+</section>
+
+<!-- FOOTER LEGAL -->
+<div class="footer-legal">
+  <a href="#legal" id="link-legal">Aviso legal y política de privacidad</a>
+</div>
+
+<section id="legal" class="section-legal" style="display:none;">
+  <div class="legal-container">
+
+    <h2>Aviso legal</h2>
+
+    <p>
+      En cumplimiento del deber de información establecido por la normativa vigente,
+      se informa que el presente sitio web es titularidad de <strong>Endinsa’t</strong>.
+    </p>
+
+    <p>
+      El acceso y uso de este sitio web atribuye la condición de usuario e implica
+      la aceptación de las presentes condiciones.
+    </p>
+
+    <p>
+      Todos los contenidos del sitio web (textos, imágenes, vídeos, diseño gráfico,
+      logotipos y otros elementos) son propiedad de Endinsa’t y están protegidos
+      por la normativa de propiedad intelectual.
+    </p>
+
+    <h2>Política de privacidad</h2>
+
+    <p>
+      Endinsa’t no recoge datos personales de forma automática.
+      Solo se tratarán datos en caso de contacto voluntario.
+    </p>
+
+    <p>
+      Los datos facilitados se utilizarán exclusivamente para responder
+      consultas o solicitudes de información.
+    </p>
+
+  </div>
+</section>
+
+</body>
+</html>

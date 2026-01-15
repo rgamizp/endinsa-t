@@ -1,0 +1,616 @@
+/* HEADER */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5px;   /* encara menys espai vertical */
+  padding-bottom: 5px;
+  
+  /* Antes era padding grande */
+  padding: 10px 40px;       /* Menos alto, pero sigue habiendo margen lateral */
+  box-sizing: border-box;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  background-color: #000;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;   /* 👈 amaga qualsevol desbordament horitzontal */
+  background-color: #000;  /* fons negre a tot arreu */
+}
+
+
+/* LOGO */
+.logo img {
+  height: 40px;             /* Tamaño del logo */
+  display: block;
+  margin: 0;                /* Evita espacios extra */
+}
+
+/* NAV */
+/* MENÚ PRINCIPAL (horitzontal) */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;      /* empeny el menú cap a la dreta */
+  justify-content: flex-end; /* assegura que tot queda enganxat a la dreta */
+}
+
+nav > ul.main-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;          /* NOMÉS el menú principal en flex */
+  gap: 25px;              /* separació entre ítems */
+  align-items: center;
+}
+
+/* treu els marges de tots els li */
+nav ul li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Enllaços del menú principal */
+nav > ul.main-menu > li > a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+nav > ul.main-menu > li > a:hover {
+  color: #00ffff;
+}
+.main-menu > li.active > a {
+  color: #00ffff;
+  font-weight: normal;  /* o bold si vols remarcar més */
+}
+
+
+/* --- SUBMENU DE SERVEIS --- */
+
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding: 8px 16px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background-color: #000;
+  display: none;          /* amagat per defecte */
+  min-width: 230px;
+}
+
+/* quan passem el ratolí per SERVEIS, es mostra */
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+/* ítems del submenu en columna */
+.submenu li {
+  margin: 4px 0;
+}
+
+/* enllaços del submenu */
+.submenu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.submenu a:hover {
+  color: #00ffff;         /* taronja en hover */
+}
+
+/* Quitamos el naranja permanente de PROJECTES */
+.active a {
+  font-weight: normal;         /* Puedes quitarlo si no quieres negrita */
+  color: #ffffff;            /* → blanco como el resto */
+}
+/* Si quieres que NO tenga negrita, cambia a: 
+.active a { color:#fff; font-weight: normal; }
+*/
+
+/* Selector idiomas */
+.lang {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: 12px;
+  color:rgb(255, 255, 255)
+}
+
+.lang span {
+  opacity: 0.7;
+  cursor: pointer;
+  color: #ffffff;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.lang span:hover {
+  color: #00ffff;
+  opacity: 1;
+}
+
+.lang .active {
+  opacity: 1;
+  font-weight: bold;
+}
+
+body, header, nav, ul, li, a, span {
+    font-family: Helvetica, Arial, sans-serif !important;
+}
+.hero-video{
+  position: relative;
+  height: 100vh;      /* ocupa una pantalla */
+  overflow: hidden;
+}
+
+.hero-video video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ====== SECCIÓ QUI SOM ====== */
+
+.section-qui {
+  background: #000;
+  color: #fff;
+  padding: 80px 60px;
+  
+  display: none;                 /* <-- fa dues columnes */
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+/* Columna de text */
+.section-qui .qui-text {
+  flex: 1;                       /* ocupa espai proporcional */
+  max-width: 50%;                /* no més de la meitat */
+}
+
+/* Imatge */
+.section-qui .qui-img {
+  flex: 1;
+  max-width: 50%;
+}
+
+.section-qui .qui-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+
+/* RESPONSIVE mòbil */
+@media (max-width: 800px) {
+  .section-qui {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .section-qui .qui-text,
+  .section-qui .qui-img {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .section-qui .qui-img {
+    order: -1; /* si vols que la imatge surti abans del text en mòbil, canvia o treu això */
+    text-align: center;
+  }
+}
+/* ===== SECCIÓ SOM A ===== */
+
+/* Contenidor general de la secció SOM A */
+/* ===== SECCIÓ SOM A ===== */
+
+.section-som {
+  background: #000;
+  color: #fff;
+  padding: 50px 0;         /* espai vertical */
+  display: none;           /* es mostra amb JS */
+   margin-top: 60px; 
+}
+
+/* Títol centrat horitzontalment */
+.section-som h2 {
+  font-size: 20px;
+  margin: 0 auto 20px auto;
+  max-width: 960px;        /* mateix ample que el bloc de sota */
+}
+
+/* Bloc mapa + info CENTRAT i amb amplada limitada */
+.som-container {
+  max-width: 960px;        /* fa que no s’escampi per tota la pantalla */
+  margin: 0 auto;          /* ⟵ centra horitzontalment */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* ⟵ alineat A DALT amb l’iframe */
+  gap: 40px;
+}
+
+/* Columna mapa (esquerra) */
+.som-map {
+  flex: 1;
+  max-width: 55%;          /* una mica més que la meitat, com al mockup */
+}
+
+.som-map iframe {
+  display: block;
+  width: 100%;
+  height: 350px;
+  border: 0;
+  border-radius: 6px;
+}
+
+/* Columna informació (dreta) */
+.som-info {
+  flex: 1;
+  max-width: 40%;
+  margin-top: 65px;          /* IMPORTANT: sense margin-top ni margin-left */
+}
+
+/* Blocs de transport */
+.transport-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.transport-icon {
+  width: 32px;
+  height: auto;
+}
+
+.som-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.som-info p {
+  margin: 4px 0 10px 0;
+  line-height: 1.4;
+}
+
+/* Responsive mòbil */
+@media (max-width: 900px) {
+  .som-container {
+    flex-direction: column;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .som-map,
+  .som-info {
+    max-width: 100%;
+  }
+}
+/* ===== Serveis - Centres educatius ===== */
+.section-servei {
+  background: #000;
+  color: #fff;
+  padding: 80px 60px;
+  display: none;                  /* OCULTA fins que fem clic al menú */
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* contenidor intern en 2 columnes */
+.section-servei .servei-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* columna imatge */
+.section-servei .servei-img {
+  flex: 1;
+}
+
+.section-servei .servei-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+/* columna text */
+.section-servei .servei-text {
+  flex: 1;
+  max-width: 50%;
+}
+
+.section-servei h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.section-servei p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.section-servei ul {
+  padding-left: 20px;
+}
+
+.section-servei li {
+  margin-bottom: 10px;
+}
+
+/* d'entrada, amagat: el JS el posa a block */
+#centres-educatius {
+  display: none;
+}
+#hospitals {
+  display: none;
+}
+#centres-gent-gran {
+  display: none;
+}
+
+
+/* Responsive mòbil */
+@media (max-width: 900px) {
+  .section-servei {
+    padding: 60px 20px;
+  }
+
+  .section-servei .servei-inner {
+    flex-direction: column;
+  }
+
+  .section-servei .servei-text {
+    max-width: 100%;
+  }
+}
+/* ===== PROJECTES ===== */
+
+.section-projectes {
+  background: #000;
+  padding: 80px 60px;
+  display: none;
+}
+
+.projectes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.projecte-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 6px;
+  height: 360px;
+}
+
+.projecte-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Overlay amb el nom */
+.projecte-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projecte-overlay span {
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Hover */
+.projecte-card:hover img {
+  opacity: 0.4;
+  transform: scale(1.03);
+}
+
+.projecte-card:hover .projecte-overlay {
+  opacity: 1;
+}
+.section-projecte {
+  background: #000;
+  color: #fff;
+  padding: 80px 60px;
+  display: none;
+}
+
+.projecte-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+/* Només afecta les imatges DINS del projecte */
+.section-projecte .projecte-galeria img {
+  width: 100%;
+  height: 200px;        /* ← AJUSTA AQUEST VALOR */
+  object-fit: cover;   /* no es deformen */
+  border-radius: 6px;
+  display: block;
+}
+/* ===== XARXES SOCIALS A SOTA DEL VÍDEO ===== */
+
+.social-links {
+  background: #000;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.social-links a {
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-links img {
+  width: 32px;
+  filter: brightness(0) invert(1); /* ← els fa blancs visibles */
+  opacity: 0.8;
+}
+
+/* Hover */
+.social-links a:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.section-legal {
+  background: #000;
+  color: #fff;
+  padding: 80px 20px;
+}
+
+.legal-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-legal h2 {
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.section-legal p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.back-top {
+  display: inline-block;
+  margin-top: 40px;
+  color: #00ffff;
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer-legal{
+  padding: 12px 60px;      /* mismo margen que tu web */
+  background: #000;
+  text-align: left;
+}
+
+.footer-legal a{
+  color: #fff !important;  /* fuerza blanco */
+  font-size: 13px !important;
+  text-decoration: none;
+  opacity: 0.85;
+  display: inline-block;
+}
+
+.footer-legal a:hover{
+  color: #00ffff !important;
+  opacity: 1;
+}
+
+/* ===== Selector de idioma CAT / CAST ===== */
+
+.lang {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.lang a {
+  color: #cccccc;          /* gris claro (no oscuro) */
+  font-size: 13px;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+.lang a:hover {
+  color: #00ffff;          /* color de acento */
+  opacity: 1;
+}
+
+.lang a.active {
+  color: #ffffff;          /* idioma activo en blanco */
+  font-weight: 600;
+  opacity: 1;
+}
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* evita clics */
+}
+/* CONTENEDOR PRINCIPAL DEL HERO */
+.hero-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;           /* ocupa toda la pantalla */
+  overflow: hidden;
+  background: #000;
+}
+
+/* WRAPPER DEL IFRAME */
+.video-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;   /* evita clicks */
+}
+
+/* IFRAME YOUTUBE */
+.video-wrapper iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.78vh;        /* 16:9 → 9/16 = 0.5625 → 1 / 0.5625 */
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 56.25vw;
+  transform: translate(-50%, -50%);
+  border: 0;
+}
