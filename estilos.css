@@ -614,3 +614,140 @@ body, header, nav, ul, li, a, span {
   transform: translate(-50%, -50%);
   border: 0;
 }
+/* =========================
+   RESPONSIVE (MÓVIL / TABLET)
+   Pégalo al FINAL de estilos.css
+========================= */
+
+/* 1) Evitar desbordes horizontales */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 2) Header y menú: mejor en pantallas pequeñas */
+@media (max-width: 900px) {
+  header {
+    padding: 12px 16px;  /* ajusta si tu header usa otro padding */
+  }
+
+  /* Menú en 2 líneas y con separación */
+  nav .main-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    justify-content: flex-end;
+  }
+
+  nav .main-menu li a {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Selector idioma más visible */
+  .lang {
+    margin-left: 12px;
+  }
+  .lang a, .lang span {
+    font-size: 13px;
+  }
+}
+
+/* 3) MÓVIL: apilar columnas */
+@media (max-width: 700px) {
+  /* Logo más pequeño */
+  .logo img {
+    height: 34px; /* ajusta a tu gusto */
+    width: auto;
+  }
+
+  /* Sección QUI SOM: de 2 columnas a 1 */
+  .section-qui {
+    display: block !important; /* tu JS pone flex en desktop */
+    padding: 40px 16px;
+  }
+  .section-qui .qui-text,
+  .section-qui .qui-img {
+    width: 100%;
+  }
+  .section-qui .qui-img {
+    margin-top: 16px;
+  }
+
+  /* Secciones de serveis: imagen arriba, texto abajo */
+  .section-servei .servei-inner {
+    display: block;
+    padding: 40px 16px;
+  }
+  .section-servei .servei-img,
+  .section-servei .servei-text {
+    width: 100%;
+  }
+  .section-servei .servei-img {
+    margin-bottom: 16px;
+  }
+
+  /* SOM A: mapa arriba + info abajo */
+  .section-som .som-container {
+    display: block;
+    padding: 40px 16px;
+  }
+  .section-som .som-map,
+  .section-som .som-info {
+    width: 100%;
+  }
+  .section-som iframe {
+    height: 320px; /* mapa más compacto */
+  }
+
+  /* Grid proyectos: 1 columna */
+  .section-projectes .projectes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 24px 16px;
+  }
+
+  /* Galerías de proyecto: 1 columna */
+  .section-projecte .projecte-inner {
+    display: block;
+    padding: 40px 16px;
+  }
+  .section-projecte .projecte-galeria {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  /* Footer social + legal con margen */
+  .social-links {
+    padding: 12px 16px;
+  }
+  .footer-legal {
+    padding: 12px 16px;
+  }
+}
+
+/* 4) TABLET: 2 columnas en proyectos */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .section-projectes .projectes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 30px 24px;
+  }
+
+  .section-projecte .projecte-galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+
